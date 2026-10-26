@@ -9,7 +9,7 @@
   <style>
     /* Scrollbar personalizada em tom vermelho */
     .custom-scrollbar::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
       background: #f1f1f1;
@@ -29,41 +29,41 @@
     }
   </style>
 </head>
-<body class="bg-[#001c48] text-slate-800 font-sans min-h-screen flex flex-col justify-between p-3 sm:p-6 select-none">
+<body class="bg-[#001c48] text-slate-800 font-sans min-h-screen flex flex-col justify-between p-2 sm:p-4 select-none">
 
   <!-- Cabeçalho com Logo Centralizado e Borda Vermelha -->
-  <header class="w-full flex justify-center my-2 sm:my-4">
-    <div class="w-36 h-36 sm:w-44 sm:h-44 bg-[#001c48] border-[6px] border-red-600 rounded-xl flex items-center justify-center p-1 shadow-2xl">
+  <header class="w-full flex justify-center my-1 sm:my-2 shrink-0">
+    <div class="w-28 h-28 sm:w-36 sm:h-36 bg-[#001c48] border-[4px] sm:border-[6px] border-red-600 rounded-xl flex items-center justify-center p-1 shadow-2xl">
       <img src="master.png" alt="Logo Master" class="w-full h-full object-contain rounded-lg" onerror="this.onerror=null; this.src='https://via.placeholder.com/180x180?text=LOGO+MASTER';">
     </div>
   </header>
 
-  <!-- Contentor Principal (Caixa Branca Centralizada) -->
-  <main class="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl border-4 border-red-600 flex flex-col overflow-hidden h-[75vh] max-h-[680px]">
+  <!-- Contentor Principal (Caixa Branca Centralizada com Scroll Corrigido) -->
+  <main class="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl border-4 border-red-600 flex flex-col overflow-hidden h-[78vh] sm:h-[82vh] min-h-[500px]">
     
     <!-- Barra Superior de Navegação do Quiz -->
-    <div id="top-nav-bar" class="hidden bg-slate-100 border-b-2 border-red-600 p-3 flex flex-wrap items-center justify-between gap-2 shrink-0">
-      <button onclick="goToMenu()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded text-xs sm:text-sm transition flex items-center gap-1 shadow">
+    <div id="top-nav-bar" class="hidden bg-slate-100 border-b-2 border-red-600 p-2.5 flex flex-wrap items-center justify-between gap-2 shrink-0">
+      <button onclick="goToMenu()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2.5 rounded text-xs transition flex items-center gap-1 shadow">
         ← Menu Principal
       </button>
       
       <!-- Navegador de Números de Questões -->
-      <div id="question-nav-menu" class="flex items-center gap-1.5 overflow-x-auto py-1">
+      <div id="question-nav-menu" class="flex items-center gap-1.5 overflow-x-auto py-0.5">
         <!-- Gerado Dinamicamente -->
       </div>
     </div>
 
-    <!-- Área de Conteúdo Interno com Scrollbar Vermelha -->
-    <div id="app-content" class="p-4 sm:p-6 overflow-y-auto custom-scrollbar flex-1">
+    <!-- Área de Conteúdo Interno com Scrollbar Vermelha Corrigida -->
+    <div id="app-content" class="p-3 sm:p-5 overflow-y-auto custom-scrollbar flex-1 min-h-0">
       <!-- Ecrã de Boas-Vindas / Seleção de Prova -->
     </div>
 
   </main>
 
   <!-- Rodapé -->
-  <footer class="text-center text-xs text-blue-200 mt-3 sm:mt-6 opacity-80">
+  <footer class="text-center text-[11px] text-blue-200 mt-2 sm:mt-4 opacity-80 shrink-0">
     <p>Simulado Preparatório para o Processo Seletivo de Medicina - UNIT / FITS</p>
-    <p class="text-[10px] text-blue-300 mt-0.5">Uso estritamente educacional e sem fins lucrativos.</p>
+    <p class="text-[9px] text-blue-300 mt-0.5">Uso estritamente educacional e sem fins lucrativos.</p>
   </footer>
 
   <script>
@@ -93,7 +93,7 @@
             id: 2,
             officialNumber: "QUESTÃO 10",
             imageUrl: "provaunit20262q10.png",
-            context: `[Tirinha do Garfield]\nQuadrinho 1: Garfield pensando ao digitar no computador: "I'M WRITING A NOVEL"\nQuadrinho 2: Garfield pensando: "IT'S A TERRIFYING FUTURISTIC STORY..." [TIC TIC TIC TIC]\nQuadrinho 3: Garfield pensando no título: "'THE LAST DONUT ON EARTH'" [TIC TIC TIC TIC]`,
+            context: "",
             prompt: "In the comic strip, Garfield says: \"I'm writing a novel.\" The word \"novel\" may confuse Portuguese speakers because it resembles the word \"novela.\"\nIn the context of the comic, it is correct to say that the term \"novel\" means:",
             options: [
               "News article.",
@@ -123,7 +123,7 @@
           {
             id: 4,
             officialNumber: "QUESTÃO 12",
-            context: `[Texto de referência da Questão 11: Ondas de calor no Sul da Ásia associadas às mudanças climáticas provocadas pela ação humana.]`,
+            context: `Such conditions are not entirely new in the region, as heatwaves have become a regular feature of South Asia's pre-monsoon summer. However, scientists and meteorological agencies say the intensity, duration and geographic spread of recent heat events are unprecedented.\n\nIncreasingly, experts are linking these extremes to human-driven climate change, which is causing extremes in natural weather patterns.`,
             prompt: "Considering the main idea of the passage, the correct title for the text is",
             options: [
               "\"Traditional Cloud Patterns in South Asia\"",
@@ -146,7 +146,7 @@
             id: 1,
             officialNumber: "QUESTÃO 9",
             imageUrl: "provaunit20261q09.png",
-            context: `Dear Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans\nThis'll be the last package I ever send (to you)\nIt's been six months and still no word, I don't deserve it?\nI know you got my last two letters, I wrote the addresses on 'em perfect\nSo this is my cassette I'm sending you, I hope you hear it\nI'm in the car right now, I'm doing ninety on the freeway\nHey, Slim, I drank a fifth of vodka, ya dare me to drive?\n\n(EMINEM. Stan)`,
+            context: "",
             prompt: "Artists often use dramatic monologues and fictional personas to express emotional extremes. In this excerpt, the speaker addresses a celebrity figure with frustration.\nAbout the function of the phrase \"Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans\" in the first line, it is correct to say it",
             options: [
               "highlights the speaker's respectful admiration toward the artist.",
@@ -162,7 +162,7 @@
             id: 2,
             officialNumber: "QUESTÃO 10",
             imageUrl: "provaunit20261q10.png",
-            context: `You know what makes me unhappy?\nWhen brothers make babies\nAnd leave a young mother to be a pappy\nAnd since we all came from a woman\nGot our name from a woman\nAnd our game from a woman\nI wonder why we take from our women\nWhy we rape our women? Do we hate our women?\nI think it's time to kill for our women\nTime to heal our women, be real to our women\n\n(SHAKUR, Tupac. Keep ya head up)`,
+            context: "",
             prompt: "Music and poetry can serve as powerful tools for social critique, especially in contexts of inequality and injustice. In the lyrics above, Tupac reflects on gender relations and the treatment of women in society.\nOne can affirm that the main issue the speaker is addressing in this excerpt is the",
             options: [
               "difficulty of raising children without financial resources.",
@@ -178,7 +178,7 @@
             id: 3,
             officialNumber: "QUESTÃO 11",
             imageUrl: "provaunit20261q11.png",
-            context: `[Imagem de Campanha do NHS - Smokefree]\nTexto em destaque: "QUIT SMOKING AND BREATHE"\nImagem: O par de pulmões é representado por ramos de plantas. O pulmão esquerdo é composto por plantas secas, escuras e murchas; o pulmão direito é composto por flores coloridas, vivas e desabrochadas.\nTexto secundário: "Smoking attacks our lungs and makes it harder to breathe. So now's the time to quit..."`,
+            context: "",
             prompt: "In this campaign image, the lungs are metaphorically represented using contrasting natural elements: one composed of dry, dark, withered plants, and the other of colorful, blooming flowers.\nFrom a symbolic perspective, this visual construction enhances the message about behavioral change in health promotion by",
             options: [
               "illustrating seasonal variations in respiratory conditions and their impact on lung function.",
@@ -194,7 +194,7 @@
             id: 4,
             officialNumber: "QUESTÃO 12",
             imageUrl: "provaunit20261q12.png",
-            context: `[Tirinha The Born Loser]\nQuadrinho 1: Homem dirigindo o carro e dizendo: "WHAT IS THAT SCENT I'M PICKING UP? IT SMELLS FAMILIAR, BUT I CAN'T PUT MY FINGER ON IT."\nQuadrinho 2: Mulher ao lado responde: "IT'S THE NEW PERFUME I'M WEARING..."\nQuadrinho 3: Mulher conclui: "EAU DE PUMPKIN SPICE!"`,
+            context: "",
             prompt: "Idiomatic expressions are commonly used in informal English to convey abstract or complex ideas. In this comic strip, the man says: \"It smells familiar, but I can't put my finger on it.\"\nOne can say that the expression \"put my finger on it\" means, in this context, that he",
             options: [
               "is trying to physically touch the scent to identify it.",
@@ -217,7 +217,7 @@
             id: 1,
             officialNumber: "QUESTÃO 9",
             imageUrl: "provaunit20252q09.png",
-            context: `[Cartoon: A Terra doente conversa com a Lua]\nLua para a Terra: "You've got a pretty nasty case of humans. Take two asteroids and call me in the morning. The side effects are rather unpleasant, but they only last a few million years, then you'll be as good as new!"`,
+            context: "",
             prompt: "This cartoon suggests that humans",
             options: [
               "are to blame for the current awful state of our planet.",
@@ -272,7 +272,7 @@
               "increases the production of hormones that activate the brain's reward system, creating a natural analgesic effect."
             ],
             correctIndex: 4,
-            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> O texto aponta expressamente que a música reduz a percepção de dor pois <em>'stimulate the release of endorphins and dopamine, which are natural painkillers'</em> (estimula a liberação de endorfinas e dopamina, que funcionam como **analgésicos naturais** do próprio corpo, ativando o sistema de recompensa e bem-estar).<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'blocks pain receptors...'</em> (bloqueia receptores de dor diretamente) — <strong>Incorreto.</strong><br>• <strong>B:</strong> <em>'accelerates the healing process...'</em> (acelera a regeneração celular) — <strong>Incorreto.</strong><br>• <strong>C:</strong> <em>'ignore its presence completely'</em> (ignorar a dor completamente) — <strong>Incorreto.</strong><br>• <strong>D:</strong> <em>'numbs the nervous system'</em> (anestesia o sistema nervoso) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'increases the production of hormones that activate the brain's reward system, creating a natural analgesic effect'</em> (aumenta a produção de hormônios que ativam o sistema de recompensa do cérebro, criando um efeito analgésico natural) — <strong>CORRETO.</strong>"
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> O texto aponta expressamente que a música reduz a percepção de dor pois <em>'stimulate the release of endorphins and dopamine, which are natural painkillers'</em> (estimula a liberação de endorfinas e dopamina, que funcionam como **analgésicos naturais** do próprio corpo, ativando o sistema de recompensa e bem-estar).<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'blocks pain receptors...'</em> (bloqueia receptores de dor diretamente) — <strong>Incorreto.</strong><br>• <strong>B:</strong> <em>'accelerates the healing process...'</u> (acelera a regeneração celular) — <strong>Incorreto.</strong><br>• <strong>C:</strong> <em>'ignore its presence completely'</em> (ignorar a dor completamente) — <strong>Incorreto.</strong><br>• <strong>D:</strong> <em>'numbs the nervous system'</em> (anestesia o sistema nervoso) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'increases the production of hormones that activate the brain's reward system, creating a natural analgesic effect'</em> (aumenta a produção de hormônios que ativam o sistema de recompensa do cérebro, criando um efeito analgésico natural) — <strong>CORRETO.</strong>"
           }
         ]
       }
@@ -300,21 +300,21 @@
 
       const appContent = document.getElementById('app-content');
       appContent.innerHTML = `
-        <div class="text-center py-4 space-y-4">
-          <div class="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 border border-red-300">
+        <div class="text-center py-2 space-y-3">
+          <div class="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-1 border border-red-300">
             Simulador de Inglês Medicina
           </div>
-          <h1 class="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
+          <h1 class="text-lg sm:text-2xl font-black text-slate-800 tracking-tight">
             Selecione a Prova UNIT para Praticar
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto">
             Resolva as questões oficiais de Língua Estrangeira (Inglês) extraídas dos exames anteriores da Universidade Tiradentes. Receba feedback com justificativas explicativas em português.
           </p>
 
-          <div class="grid grid-cols-1 gap-3 pt-3 max-w-md mx-auto">
+          <div class="grid grid-cols-1 gap-2.5 pt-2 max-w-md mx-auto">
             
             <!-- Card Prova 2026.2 -->
-            <button onclick="startExam('2026.2')" class="bg-white border-2 border-red-500 hover:border-red-700 hover:bg-red-50 p-3.5 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
+            <button onclick="startExam('2026.2')" class="bg-white border-2 border-red-500 hover:border-red-700 hover:bg-red-50 p-3 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
               <div>
                 <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Edição Mais Recente</span>
                 <h2 class="text-sm font-bold text-slate-800 group-hover:text-red-700 mt-1">
@@ -328,7 +328,7 @@
             </button>
 
             <!-- Card Prova 2026.1 -->
-            <button onclick="startExam('2026.1')" class="bg-white border-2 border-red-400 hover:border-red-600 hover:bg-red-50 p-3.5 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
+            <button onclick="startExam('2026.1')" class="bg-white border-2 border-red-400 hover:border-red-600 hover:bg-red-50 p-3 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
               <div>
                 <span class="bg-slate-800 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Edição Intermediária</span>
                 <h2 class="text-sm font-bold text-slate-800 group-hover:text-red-700 mt-1">
@@ -342,7 +342,7 @@
             </button>
 
             <!-- Card Prova 2025.2 -->
-            <button onclick="startExam('2025.2')" class="bg-white border-2 border-slate-300 hover:border-red-600 hover:bg-red-50 p-3.5 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
+            <button onclick="startExam('2025.2')" class="bg-white border-2 border-slate-300 hover:border-red-600 hover:bg-red-50 p-3 rounded-xl text-left shadow-md transition-all group flex flex-col justify-between">
               <div>
                 <span class="bg-slate-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Edição Anterior</span>
                 <h2 class="text-sm font-bold text-slate-800 group-hover:text-red-700 mt-1">
@@ -424,27 +424,26 @@
       const appContent = document.getElementById('app-content');
       
       let html = `
-        <div class="space-y-4">
+        <div class="space-y-3">
           <!-- Cabeçalho da Questão -->
-          <div class="flex items-center justify-between border-b pb-2">
+          <div class="flex items-center justify-between border-b pb-1.5">
             <div>
-              <span class="text-[11px] font-extrabold uppercase text-red-600 tracking-wider">${exam.title}</span>
-              <h2 class="text-base font-black text-slate-800">${q.officialNumber} (Questão ${currentQuestionIndex + 1} de ${exam.questions.length})</h2>
+              <span class="text-[10px] font-extrabold uppercase text-red-600 tracking-wider">${exam.title}</span>
+              <h2 class="text-sm sm:text-base font-black text-slate-800">${q.officialNumber} (Questão ${currentQuestionIndex + 1} de ${exam.questions.length})</h2>
             </div>
-            <span class="text-xs font-semibold bg-slate-100 text-slate-600 px-2 py-1 rounded">Inglês</span>
+            <span class="text-[11px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Inglês</span>
           </div>
 
-          <!-- Imagem da Questão (se existir) -->
+          <!-- Imagem da Questão (Sem caixas de texto descritivas abaixo) -->
           ${q.imageUrl ? `
-            <div class="my-3 flex flex-col items-center justify-center bg-slate-50 border-2 border-slate-200 rounded-xl p-2 shadow-inner">
-              <img src="${q.imageUrl}" alt="Elemento Visual da ${q.officialNumber}" class="max-h-64 sm:max-h-72 w-auto object-contain rounded-lg border border-slate-300 shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-xs text-slate-400 p-2 text-center italic\'>Imagem não encontrada (${q.imageUrl}). Certifique-se de enviar o arquivo .png correspondente para a raiz do seu repositório no GitHub.</div>';">
-              <span class="text-[10px] text-slate-400 mt-1 font-sans">Figura original do caderno de provas</span>
+            <div class="my-2 flex justify-center bg-slate-50 border border-slate-200 rounded-xl p-2 shadow-inner">
+              <img src="${q.imageUrl}" alt="Elemento Visual da ${q.officialNumber}" class="max-h-60 sm:max-h-64 w-auto object-contain rounded-lg border border-slate-300 shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-xs text-slate-400 p-2 text-center italic\'>Imagem não encontrada (${q.imageUrl}). Certifique-se de enviar o arquivo .png correspondente para a raiz do seu repositório no GitHub.</div>';">
             </div>
           ` : ''}
 
           <!-- Texto de Contexto / Suporte -->
           ${q.context ? `
-            <div class="bg-slate-50 border-l-4 border-red-600 p-3 rounded text-xs sm:text-sm text-slate-700 font-serif leading-relaxed whitespace-pre-line shadow-inner">
+            <div class="bg-slate-50 border-l-4 border-red-600 p-2.5 rounded text-xs sm:text-sm text-slate-700 font-serif leading-relaxed whitespace-pre-line shadow-inner">
               ${q.context}
             </div>
           ` : ''}
@@ -485,8 +484,8 @@
           <button 
             onclick="selectOption(${optIdx})" 
             ${isChecked ? 'disabled' : ''} 
-            class="w-full text-left p-3 rounded-lg border-2 transition flex items-start gap-3 shadow-sm ${cardStyle}">
-            <span class="w-6 h-6 rounded-md font-bold text-xs flex items-center justify-center shrink-0 ${labelColor}">
+            class="w-full text-left p-2.5 rounded-lg border-2 transition flex items-start gap-2.5 shadow-sm ${cardStyle}">
+            <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-md font-bold text-xs flex items-center justify-center shrink-0 ${labelColor}">
               ${optionLabels[optIdx]}
             </span>
             <span class="text-xs sm:text-sm text-slate-800 pt-0.5 leading-snug">
@@ -502,10 +501,10 @@
       if (isChecked) {
         const isCorrect = selectedOption === q.correctIndex;
         html += `
-          <div class="mt-4 p-4 rounded-xl border-2 ${isCorrect ? 'bg-emerald-50 border-emerald-500 text-emerald-950' : 'bg-red-50 border-red-500 text-red-950'} shadow-md">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-lg">${isCorrect ? '✅' : '❌'}</span>
-              <h3 class="font-extrabold text-sm uppercase">
+          <div class="mt-3 p-3 sm:p-4 rounded-xl border-2 ${isCorrect ? 'bg-emerald-50 border-emerald-500 text-emerald-950' : 'bg-red-50 border-red-500 text-red-950'} shadow-md">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="text-base">${isCorrect ? '✅' : '❌'}</span>
+              <h3 class="font-extrabold text-xs sm:text-sm uppercase">
                 ${isCorrect ? 'Resposta Correta!' : 'Resposta Incorreta!'}
               </h3>
             </div>
@@ -516,14 +515,14 @@
         `;
       }
 
-      // Botões de Ação na Ordem Especificada: Previous, Check, Next
+      // Botões de Ação: Previous, Check, Next
       html += `
-        <div class="flex items-center justify-between gap-2 pt-4 border-t mt-4">
+        <div class="flex items-center justify-between gap-2 pt-3 border-t mt-3">
           <!-- Botão PREVIOUS -->
           <button 
             onclick="prevQuestion()" 
             ${currentQuestionIndex === 0 ? 'disabled' : ''} 
-            class="bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:hover:bg-red-600 text-white font-bold py-2 px-3 sm:px-4 rounded-lg text-xs sm:text-sm transition shadow flex items-center gap-1">
+            class="bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:hover:bg-red-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition shadow flex items-center gap-1">
             ◄ Anterior
           </button>
 
@@ -531,7 +530,7 @@
           <button 
             onclick="checkAnswer()" 
             ${selectedOption === undefined || isChecked ? 'disabled' : ''} 
-            class="bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:hover:bg-red-600 text-white font-black py-2 px-4 sm:px-6 rounded-lg text-xs sm:text-sm transition shadow-lg ring-2 ring-red-300 uppercase">
+            class="bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:hover:bg-red-600 text-white font-black py-1.5 px-4 sm:px-6 rounded-lg text-xs transition shadow-lg ring-2 ring-red-300 uppercase">
             Verificar
           </button>
 
@@ -539,13 +538,13 @@
           ${currentQuestionIndex < exam.questions.length - 1 ? `
             <button 
               onclick="nextQuestion()" 
-              class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 sm:px-4 rounded-lg text-xs sm:text-sm transition shadow flex items-center gap-1">
+              class="bg-red-600 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition shadow flex items-center gap-1">
               Próxima ►
             </button>
           ` : `
             <button 
               onclick="showResultsSummary()" 
-              class="bg-emerald-600 hover:bg-emerald-700 text-white font-black py-2 px-3 sm:px-4 rounded-lg text-xs sm:text-sm transition shadow uppercase">
+              class="bg-emerald-600 hover:bg-emerald-700 text-white font-black py-1.5 px-3 rounded-lg text-xs transition shadow uppercase">
               Finalizar
             </button>
           `}
@@ -613,35 +612,35 @@
       const appContent = document.getElementById('app-content');
       
       let summaryHtml = `
-        <div class="space-y-5 text-center py-2">
-          <div class="bg-red-50 border-2 border-red-500 rounded-xl p-4 shadow-sm">
-            <span class="text-xs font-extrabold uppercase text-red-600 tracking-wider">${exam.institution}</span>
-            <h2 class="text-lg sm:text-xl font-black text-slate-800 mt-1">${exam.title}</h2>
+        <div class="space-y-4 text-center py-1">
+          <div class="bg-red-50 border-2 border-red-500 rounded-xl p-3 shadow-sm">
+            <span class="text-[10px] font-extrabold uppercase text-red-600 tracking-wider">${exam.institution}</span>
+            <h2 class="text-base sm:text-lg font-black text-slate-800 mt-0.5">${exam.title}</h2>
             <p class="text-xs text-slate-500">${exam.date}</p>
           </div>
 
           <!-- Card da Nota Final -->
-          <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-xl border-4 border-red-600 flex flex-col items-center justify-center">
+          <div class="bg-slate-900 text-white rounded-2xl p-4 shadow-xl border-4 border-red-600 flex flex-col items-center justify-center">
             <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Sua Nota Final</span>
-            <div class="text-4xl sm:text-5xl font-black text-red-500 my-1">${scoreOutofTen} <span class="text-lg text-slate-400 font-normal">/ 10.0</span></div>
+            <div class="text-3xl sm:text-4xl font-black text-red-500 my-1">${scoreOutofTen} <span class="text-base text-slate-400 font-normal">/ 10.0</span></div>
             <p class="text-xs text-slate-300 font-medium">Aproveitamento Global: <strong class="text-white">${percentageAccurate}%</strong></p>
           </div>
 
           <!-- Métricas Quantitativas -->
-          <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
-            <div class="bg-emerald-50 border-2 border-emerald-500 p-3 rounded-xl">
-              <span class="text-2xl font-black text-emerald-700">${correctCount}</span>
-              <p class="text-xs font-bold text-emerald-800 uppercase mt-0.5">Acertos (${((correctCount/totalQuestions)*100).toFixed(0)}%)</p>
+          <div class="grid grid-cols-2 gap-2.5 max-w-md mx-auto">
+            <div class="bg-emerald-50 border-2 border-emerald-500 p-2.5 rounded-xl">
+              <span class="text-xl font-black text-emerald-700">${correctCount}</span>
+              <p class="text-[11px] font-bold text-emerald-800 uppercase mt-0.5">Acertos (${((correctCount/totalQuestions)*100).toFixed(0)}%)</p>
             </div>
-            <div class="bg-red-50 border-2 border-red-400 p-3 rounded-xl">
-              <span class="text-2xl font-black text-red-700">${incorrectCount}</span>
-              <p class="text-xs font-bold text-red-800 uppercase mt-0.5">Erros (${((incorrectCount/totalQuestions)*100).toFixed(0)}%)</p>
+            <div class="bg-red-50 border-2 border-red-400 p-2.5 rounded-xl">
+              <span class="text-xl font-black text-red-700">${incorrectCount}</span>
+              <p class="text-[11px] font-bold text-red-800 uppercase mt-0.5">Erros (${((incorrectCount/totalQuestions)*100).toFixed(0)}%)</p>
             </div>
           </div>
 
           <!-- Detalhamento por Questão -->
-          <div class="text-left border-t pt-4 space-y-3">
-            <h3 class="font-extrabold text-sm text-slate-800 uppercase border-b pb-1">Revisão Detalhada das Questões</h3>
+          <div class="text-left border-t pt-3 space-y-2">
+            <h3 class="font-extrabold text-xs sm:text-sm text-slate-800 uppercase border-b pb-1">Revisão Detalhada das Questões</h3>
       `;
 
       exam.questions.forEach((q, idx) => {
@@ -650,14 +649,14 @@
         const optionLabels = ['A', 'B', 'C', 'D', 'E'];
 
         summaryHtml += `
-          <div class="p-3 rounded-lg border text-xs sm:text-sm ${isCorrect ? 'bg-emerald-50/60 border-emerald-300' : 'bg-red-50/60 border-red-300'}">
-            <div class="flex items-center justify-between font-bold mb-1">
+          <div class="p-2.5 rounded-lg border text-xs ${isCorrect ? 'bg-emerald-50/60 border-emerald-300' : 'bg-red-50/60 border-red-300'}">
+            <div class="flex items-center justify-between font-bold mb-0.5">
               <span>${q.officialNumber} (Questão ${idx + 1})</span>
               <span class="${isCorrect ? 'text-emerald-700' : 'text-red-700'}">
                 ${isCorrect ? '✅ Correta' : '❌ Incorreta'}
               </span>
             </div>
-            <p class="text-slate-600 text-xs">
+            <p class="text-slate-600 text-[11px]">
               Sua resposta: <strong>${userChoice !== undefined ? optionLabels[userChoice] : 'Não respondida'}</strong> | Gabarito Oficial: <strong class="text-emerald-700">${optionLabels[q.correctIndex]}</strong>
             </p>
           </div>
@@ -668,11 +667,11 @@
           </div>
 
           <!-- Botões Finais de Navegação -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t">
-            <button onclick="startExam('${currentExamKey}')" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-6 rounded-lg text-xs sm:text-sm transition shadow">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 pt-3 border-t">
+            <button onclick="startExam('${currentExamKey}')" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-lg text-xs transition shadow">
               🔄 Refazer Esta Prova
             </button>
-            <button onclick="goToMenu()" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-900 text-white font-bold py-2.5 px-6 rounded-lg text-xs sm:text-sm transition shadow">
+            <button onclick="goToMenu()" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 px-5 rounded-lg text-xs transition shadow">
               🏠 Voltar ao Menu Principal
             </button>
           </div>
