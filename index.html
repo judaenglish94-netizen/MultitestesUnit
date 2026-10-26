@@ -92,7 +92,7 @@
           {
             id: 2,
             officialNumber: "QUESTÃO 10",
-            imageUrl: "images/unit_2026_2_q10_garfield.png",
+            imageUrl: "provaunit20262q10.png",
             context: `[Tirinha do Garfield]\nQuadrinho 1: Garfield pensando ao digitar no computador: "I'M WRITING A NOVEL"\nQuadrinho 2: Garfield pensando: "IT'S A TERRIFYING FUTURISTIC STORY..." [TIC TIC TIC TIC]\nQuadrinho 3: Garfield pensando no título: "'THE LAST DONUT ON EARTH'" [TIC TIC TIC TIC]`,
             prompt: "In the comic strip, Garfield says: \"I'm writing a novel.\" The word \"novel\" may confuse Portuguese speakers because it resembles the word \"novela.\"\nIn the context of the comic, it is correct to say that the term \"novel\" means:",
             options: [
@@ -145,7 +145,7 @@
           {
             id: 1,
             officialNumber: "QUESTÃO 9",
-            imageUrl: "images/unit_2026_1_q09_eminem.png",
+            imageUrl: "provaunit20261q09.png",
             context: `Dear Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans\nThis'll be the last package I ever send (to you)\nIt's been six months and still no word, I don't deserve it?\nI know you got my last two letters, I wrote the addresses on 'em perfect\nSo this is my cassette I'm sending you, I hope you hear it\nI'm in the car right now, I'm doing ninety on the freeway\nHey, Slim, I drank a fifth of vodka, ya dare me to drive?\n\n(EMINEM. Stan)`,
             prompt: "Artists often use dramatic monologues and fictional personas to express emotional extremes. In this excerpt, the speaker addresses a celebrity figure with frustration.\nAbout the function of the phrase \"Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans\" in the first line, it is correct to say it",
             options: [
@@ -161,7 +161,7 @@
           {
             id: 2,
             officialNumber: "QUESTÃO 10",
-            imageUrl: "images/unit_2026_1_q10_tupac.png",
+            imageUrl: "provaunit20261q10.png",
             context: `You know what makes me unhappy?\nWhen brothers make babies\nAnd leave a young mother to be a pappy\nAnd since we all came from a woman\nGot our name from a woman\nAnd our game from a woman\nI wonder why we take from our women\nWhy we rape our women? Do we hate our women?\nI think it's time to kill for our women\nTime to heal our women, be real to our women\n\n(SHAKUR, Tupac. Keep ya head up)`,
             prompt: "Music and poetry can serve as powerful tools for social critique, especially in contexts of inequality and injustice. In the lyrics above, Tupac reflects on gender relations and the treatment of women in society.\nOne can affirm that the main issue the speaker is addressing in this excerpt is the",
             options: [
@@ -177,7 +177,7 @@
           {
             id: 3,
             officialNumber: "QUESTÃO 11",
-            imageUrl: "images/unit_2026_1_q11_smokefree.png",
+            imageUrl: "provaunit20261q11.png",
             context: `[Imagem de Campanha do NHS - Smokefree]\nTexto em destaque: "QUIT SMOKING AND BREATHE"\nImagem: O par de pulmões é representado por ramos de plantas. O pulmão esquerdo é composto por plantas secas, escuras e murchas; o pulmão direito é composto por flores coloridas, vivas e desabrochadas.\nTexto secundário: "Smoking attacks our lungs and makes it harder to breathe. So now's the time to quit..."`,
             prompt: "In this campaign image, the lungs are metaphorically represented using contrasting natural elements: one composed of dry, dark, withered plants, and the other of colorful, blooming flowers.\nFrom a symbolic perspective, this visual construction enhances the message about behavioral change in health promotion by",
             options: [
@@ -193,7 +193,7 @@
           {
             id: 4,
             officialNumber: "QUESTÃO 12",
-            imageUrl: "images/unit_2026_1_q12_born_loser.png",
+            imageUrl: "provaunit20261q12.png",
             context: `[Tirinha The Born Loser]\nQuadrinho 1: Homem dirigindo o carro e dizendo: "WHAT IS THAT SCENT I'M PICKING UP? IT SMELLS FAMILIAR, BUT I CAN'T PUT MY FINGER ON IT."\nQuadrinho 2: Mulher ao lado responde: "IT'S THE NEW PERFUME I'M WEARING..."\nQuadrinho 3: Mulher conclui: "EAU DE PUMPKIN SPICE!"`,
             prompt: "Idiomatic expressions are commonly used in informal English to convey abstract or complex ideas. In this comic strip, the man says: \"It smells familiar, but I can't put my finger on it.\"\nOne can say that the expression \"put my finger on it\" means, in this context, that he",
             options: [
@@ -216,7 +216,7 @@
           {
             id: 1,
             officialNumber: "QUESTÃO 9",
-            imageUrl: "images/unit_2025_2_q09_cartoon.png",
+            imageUrl: "provaunit20252q09.png",
             context: `[Cartoon: A Terra doente conversa com a Lua]\nLua para a Terra: "You've got a pretty nasty case of humans. Take two asteroids and call me in the morning. The side effects are rather unpleasant, but they only last a few million years, then you'll be as good as new!"`,
             prompt: "This cartoon suggests that humans",
             options: [
@@ -281,8 +281,8 @@
     // Estado Global da Aplicação
     let currentExamKey = null;
     let currentQuestionIndex = 0;
-    let userAnswers = {}; // Armazena escolhas do utilizador
-    let checkedQuestions = {}; // Guarda se a questão já foi verificada
+    let userAnswers = {};
+    let checkedQuestions = {};
 
     // Iniciar a aplicação exibindo a seleção de exames
     window.onload = () => {
@@ -387,7 +387,6 @@
         const btn = document.createElement('button');
         btn.textContent = idx + 1;
         
-        // Estilização base do botão numérico
         let btnClasses = "w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-xs font-bold transition flex items-center justify-center border ";
         
         if (idx === currentQuestionIndex) {
@@ -438,7 +437,7 @@
           <!-- Imagem da Questão (se existir) -->
           ${q.imageUrl ? `
             <div class="my-3 flex flex-col items-center justify-center bg-slate-50 border-2 border-slate-200 rounded-xl p-2 shadow-inner">
-              <img src="${q.imageUrl}" alt="Elemento Visual da ${q.officialNumber}" class="max-h-64 sm:max-h-72 w-auto object-contain rounded-lg border border-slate-300 shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-xs text-slate-400 p-2 text-center italic\'>Imagem não encontrada (${q.imageUrl}). Certifique-se de ter enviado o arquivo .png para a pasta /images no GitHub.</div>';">
+              <img src="${q.imageUrl}" alt="Elemento Visual da ${q.officialNumber}" class="max-h-64 sm:max-h-72 w-auto object-contain rounded-lg border border-slate-300 shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-xs text-slate-400 p-2 text-center italic\'>Imagem não encontrada (${q.imageUrl}). Certifique-se de enviar o arquivo .png correspondente para a raiz do seu repositório no GitHub.</div>';">
               <span class="text-[10px] text-slate-400 mt-1 font-sans">Figura original do caderno de provas</span>
             </div>
           ` : ''}
