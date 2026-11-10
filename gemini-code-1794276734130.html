@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulado UNIT Medicina - Questões de Inglês</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --space-dark: #050b14;
+      --space-blue: #0b192e;
+      --accent-blue: #0284c7;
+      --card-bg: rgba(13, 27, 42, 0.92);
+      --card-border: rgba(255, 255, 255, 0.85);
+      --text-main: #f8f9fa;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      min-height: 100vh;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Efeito de Estrelas no Fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 230px 190px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 300px 80px, #ffffff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 350px 350px;
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Header com a Logo judalogo.png */
+    .brand-header {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    .custom-logo {
+      max-width: 168px; /* 20% maior */
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
+      transition: transform 0.3s ease;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 48%, transparent 74%);
+      mask-image: radial-gradient(ellipse at center, black 48%, transparent 74%);
+    }
+
+    .custom-logo:hover {
+      transform: scale(1.03);
+    }
+
+    /* Container Principal no padrão espacial */
+    .space-container {
+      width: 100%;
+      max-width: 750px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      border: 3px solid var(--card-border);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 76vh;
+      min-height: 480px;
+    }
+
+    /* Scrollbar personalizada em tom azul espacial */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #0284c7;
+      border-radius: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+    .custom-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: #0284c7 rgba(15, 23, 42, 0.6);
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <!-- Cabeçalho com Logo judalogo.png Centralizada -->
+  <header class="brand-header">
+    <img src="judalogo.png" alt="JM Logo" class="custom-logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/160x160?text=JM+LOGO';">
+  </header>
+
+  <!-- Contentor Principal -->
+  <main class="space-container">
+
+    <!-- Barra Superior de Navegação do Quiz -->
+    <div id="top-nav-bar" class="hidden bg-slate-900/90 border-b border-slate-700 p-2.5 sm:px-4 flex flex-wrap items-center justify-between gap-2 shrink-0">
+      <button onclick="goToMenu()" class="bg-slate-800 hover:bg-slate-700 text-white border border-white/80 font-bold py-1.5 px-3 rounded-full text-xs transition flex items-center gap-1 shadow">
+        ← Menu Principal
+      </button>
+
+      <!-- Navegador de Números de Questões -->
+      <div id="question-nav-menu" class="flex items-center gap-1.5 overflow-x-auto py-0.5">
+        <!-- Gerado Dinamicamente -->
+      </div>
+    </div>
+
+    <!-- Área de Conteúdo Interno -->
+    <div id="app-content" class="p-4 sm:p-6 overflow-y-auto custom-scrollbar flex-1 min-h-0">
+      <!-- Ecrã de Boas-Vindas / Seleção de Prova -->
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="text-center text-[11px] text-slate-400 mt-3 opacity-80 shrink-0 relative z-10">
+    <p>Simulado Preparatório para o Processo Seletivo de Medicina - UNIT / FITS</p>
+    <p class="text-[9px] text-slate-500 mt-0.5">Uso estritamente educacional e sem fins lucrativos.</p>
+  </footer>
+
+  <script>
+    // Banco de Dados das Provas Oficiais de Inglês UNIT Medicina
+    const examsData = {
+      '2026.2': {
+        title: 'PROCESSO SELETIVO UNIFICADO DE MEDICINA 2026.2',
+        institution: 'UNIT / FITS - Faculdade Tiradentes',
+        date: 'Aplicação: 31/05/2026',
+        questions: [
+          {
+            id: 1,
+            officialNumber: "QUESTÃO 9",
+            context: `"As a female coach, the girls trust me," she said. "They tell me things they can't tell anyone else, about pressure to undergo female genital mutilation (FGM), about being told to quit school, about relationships that make them feel unsafe."\n\nIn parts of rural and hard-to-reach Uganda, female genital mutilation remains a serious human rights violation and public health concern. For girls in Sebei communities, it is tied to deep-rooted gender norms that also increase the risk of child marriage, school dropout and violence.\n\nYet on school grounds and running tracks, change is beginning to take hold. (...)`,
+            prompt: "The text highlights the role of sports and female leadership in some Ugandan communities.\nAccording to the passage, the presence of a female coach is important mainly because she",
+            options: [
+              "encourages girls to abandon their cultural traditions completely.",
+              "helps girls feel supported and safe enough to share personal struggles.",
+              "teaches students how to become professional athletes in Uganda.",
+              "forces families to keep their daughters in school permanently.",
+              "replaces the role of parents in solving community problems."
+            ],
+            correctIndex: 1,
+            explanation: "A alternativa correta é a <strong>B</strong>.<br><br><strong>Justificativa:</strong> O texto destaca explicitamente no trecho inicial: <em>'They tell me things they can't tell anyone else...'</em> (Elas me contam coisas que não conseguem contar a mais ninguém...) sobre pressões sociais, abandono escolar e relacionamentos inseguros. A presença da treinadora cria um ambiente de confiança para compartilhar problemas pessoais.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'encourages girls to abandon...'</em> (encoraja a abandonar tradições) — <strong>Incorreto.</strong> O foco é apoio e segurança, não abandono cultural irrestrito.<br>• <strong>B:</strong> <em>'helps girls feel supported and safe enough to share personal struggles'</em> (ajuda as meninas a se sentirem apoiadas e seguras para compartilhar lutas pessoais) — <strong>CORRETO.</strong><br>• <strong>C:</strong> <em>'teaches students to become professional athletes'</em> (ensina a se tornarem atletas profissionais) — <strong>Incorreto.</strong> O impacto ressaltado é social e humanitário.<br>• <strong>D:</strong> <em>'forces families to keep...'</em> (força as famílias a manter filhas na escola) — <strong>Incorreto.</strong> Ela não força famílias.<br>• <strong>E:</strong> <em>'replaces the role of parents...'</em> (substitui o papel dos pais) — <strong>Incorreto.</strong> O texto não menciona substituição familiar."
+          },
+          {
+            id: 2,
+            officialNumber: "QUESTÃO 10",
+            imageUrl: "provaunit20262q10.png",
+            context: "",
+            prompt: "In the comic strip, Garfield says: \"I'm writing a novel.\" The word \"novel\" may confuse Portuguese speakers because it resembles the word \"novela.\"\nIn the context of the comic, it is correct to say that the term \"novel\" means:",
+            options: [
+              "News article.",
+              "Magazine.",
+              "Fictional story.",
+              "TV series episode.",
+              "Theater script."
+            ],
+            correctIndex: 2,
+            explanation: "A alternativa correta é a <strong>C</strong>.<br><br><strong>Justificativa:</strong> A palavra <strong>'novel'</strong> em inglês é um <strong>falso cognato (falso amigo)</strong>. Não significa 'novela de televisão' (que em inglês é <em>soap opera</em>), mas sim um <strong>romance / história de ficção longa</strong> (<em>'fictional story'</em>).<br><br><strong>Tradução dos termos das alternativas:</strong><br>• <strong>A:</strong> <em>News article</em> (Artigo de notícia) — <strong>Incorreto.</strong><br>• <strong>B:</strong> <em>Magazine</em> (Revista) — <strong>Incorreto.</strong><br>• <strong>C:</strong> <em>Fictional story</em> (História de ficção / Romance) — <strong>CORRETO.</strong><br>• <strong>D:</strong> <em>TV series episode</em> (Episódio de série de TV) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>Theater script</em> (Roteiro de teatro) — <strong>Incorreto.</strong>"
+          },
+          {
+            id: 3,
+            officialNumber: "QUESTÃO 11",
+            context: `Such conditions are not entirely new in the region, as heatwaves have become a regular feature of South Asia's pre-monsoon summer. However, scientists and meteorological agencies say the intensity, duration and geographic spread of recent heat events are unprecedented.\n\nIncreasingly, experts are linking these extremes to human-driven climate change, which is causing extremes in natural weather patterns.`,
+            prompt: "The text discusses recent climate issues in South Asia and presents experts' opinions about their causes.\nAccording to the passage, it is correct to infer that",
+            options: [
+              "heatwaves in South Asia are temporary events that rarely affect large areas.",
+              "meteorological agencies deny the connection between climate change and extreme weather.",
+              "recent heatwaves are considered more severe and widespread than in the past.",
+              "climate change has reduced the frequency of natural disasters in the region.",
+              "scientists believe that pre-monsoon summers are becoming colder over time."
+            ],
+            correctIndex: 2,
+            explanation: "A alternativa correta é a <strong>C</strong>.<br><br><strong>Justificativa:</strong> O texto afirma que <em>'the intensity, duration and geographic spread of recent heat events are unprecedented'</em> (a intensidade, duração e alcance geográfico dos eventos recentes de calor são <strong>sem precedentes</strong>). Isso significa diretamente que as ondas de calor recentes são mais severas e abrangentes do que no passado.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'rarely affect large areas'</em> (raramente afetam grandes áreas) — <strong>Incorreto.</strong> O texto menciona expansão geográfica sem precedentes.<br>• <strong>B:</strong> <em>'agencies deny the connection...'</em> (agências negam a conexão) — <strong>Incorreto.</strong> Pelo contrário, elas vinculam as ondas às mudanças climáticas.<br>• <strong>C:</strong> <em>'recent heatwaves are considered more severe and widespread than in the past'</em> (ondas de calor recentes são consideradas mais severas e abrangentes do que no passado) — <strong>CORRETO.</strong><br>• <strong>D:</strong> <em>'reduced the frequency...'</em> (reduziu a frequência) — <strong>Incorreto.</strong> Ocorreu aumento dos extremos.<br>• <strong>E:</strong> <em>'summers are becoming colder'</em> (verões estão ficando mais frios) — <strong>Incorreto.</strong> Foca no calor extremo."
+          },
+          {
+            id: 4,
+            officialNumber: "QUESTÃO 12",
+            context: `Such conditions are not entirely new in the region, as heatwaves have become a regular feature of South Asia's pre-monsoon summer. However, scientists and meteorological agencies say the intensity, duration and geographic spread of recent heat events are unprecedented.\n\nIncreasingly, experts are linking these extremes to human-driven climate change, which is causing extremes in natural weather patterns.`,
+            prompt: "Considering the main idea of the passage, the correct title for the text is",
+            options: [
+              "\"Traditional Cloud Patterns in South Asia\"",
+              "\"The End of a Season\"",
+              "\"Tourism Growth During Asian Summers\"",
+              "\"How to Prevent Summer Temperatures\"",
+              "\"Heatwaves and the Effects of Climate Change\""
+            ],
+            correctIndex: 4,
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> O texto aborda centralmente as ondas de calor na Ásia Meridional e sua relação causal direta com as mudanças climáticas induzidas pelo homem (<em>'heatwaves'</em> e <em>'human-driven climate change'</em>). Portanto, o título mais apropriado para sintetizar o artigo é <strong>'Heatwaves and the Effects of Climate Change'</strong> (Ondas de Calor e os Efeitos das Mudanças Climáticas).<br><br><strong>Tradução dos títulos propostos:</strong><br>• <strong>A:</strong> Padrões Tradicionais de Nuvens na Ásia do Sul — <strong>Incorreto.</strong><br>• <strong>B:</strong> O Fim de uma Estação — <strong>Incorreto.</strong><br>• <strong>C:</strong> Crescimento do Turismo Durante os Verões Asiáticos — <strong>Incorreto.</strong><br>• <strong>D:</strong> Como Prevenir as Temperaturas de Verão — <strong>Incorreto.</strong><br>• <strong>E:</strong> Ondas de Calor e os Efeitos das Mudanças Climáticas — <strong>CORRETO.</strong>"
+          }
+        ]
+      },
+      '2026.1': {
+        title: 'PROCESSO SELETIVO UNIFICADO DE MEDICINA 2026.1',
+        institution: 'UNIT / FITS - Faculdade Tiradentes',
+        date: 'Aplicação: 26/10/2025',
+        questions: [
+          {
+            id: 1,
+            officialNumber: "QUESTÃO 9",
+            imageUrl: "provaunit20261q09.png",
+            context: "",
+            prompt: "Artists often use dramatic monologues and fictional personas to express emotional extremes. In this excerpt, the speaker addresses a celebrity figure with frustration.\nAbout the function of the phrase \"Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans\" in the first line, it is correct to say it",
+            options: [
+              "highlights the speaker's respectful admiration toward the artist.",
+              "introduces the artist's real name and social status.",
+              "suggests that the artist frequently responds to fan messages.",
+              "ironically accuses the artist of arrogance and emotional neglect.",
+              "shows that the speaker has forgiven the artist for the silence."
+            ],
+            correctIndex: 3,
+            explanation: "A alternativa correta é a <strong>D</strong>.<br><br><strong>Justificativa:</strong> A expressão <em>'Mr. I'm-Too-Good-To-Call-Or-Write-My-Fans'</em> (Senhor 'Sou-Bom-Demais-Para-Ligar-Ou-Escrever-Para-Meus-Fãs') é um apelido sarcástico criado pelo fã para <strong>acusar ironicamente o artista de arrogância e de abandono/negligência emocional</strong> por ter ficado seis meses sem responder suas cartas.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'respectful admiration'</em> (admiração respeitosa) — <strong>Incorreto.</strong> O tom é de ironia e frustração.<br>• <strong>B:</strong> <em>'introduces real name'</em> (apresenta o nome real) — <strong>Incorreto.</strong> É um apelido irônico.<br>• <strong>C:</strong> <em>'frequently responds'</em> (frequentemente responde) — <strong>Incorreto.</strong> Ele reclama da falta de respostas.<br>• <strong>D:</strong> <em>'ironically accuses the artist of arrogance and emotional neglect'</em> (acusa ironicamente o artista de arrogância e negligência emocional) — <strong>CORRETO.</strong><br>• <strong>E:</strong> <em>'has forgiven the artist'</em> (perdoou o artista) — <strong>Incorreto.</strong> Ele demonstra raiva crescente."
+          },
+          {
+            id: 2,
+            officialNumber: "QUESTÃO 10",
+            imageUrl: "provaunit20261q10.png",
+            context: "",
+            prompt: "Music and poetry can serve as powerful tools for social critique, especially in contexts of inequality and injustice. In the lyrics above, Tupac reflects on gender relations and the treatment of women in society.\nOne can affirm that the main issue the speaker is addressing in this excerpt is the",
+            options: [
+              "difficulty of raising children without financial resources.",
+              "lack of recognition men receive from the female members of their families.",
+              "superiority of women over men in society.",
+              "legal consequences men face when they leave their children with the mother.",
+              "contradiction between men's origins and their harmful behavior toward women."
+            ],
+            correctIndex: 4,
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> Tupac aponta a contradição de que todos os homens nascem e vêm de uma mulher (<em>'since we all came from a woman'</em>), mas ainda assim a tratam com violência, abandono e desrespeito (<em>'I wonder why we take from our women... Do we hate our women?'</em>). Portanto, o foco é a <strong>contradição entre a origem dos homens e seu comportamento nocivo em relação às mulheres</strong>.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'difficulty of raising children without financial resources'</em> — <strong>Incorreto.</strong> O foco é no comportamento masculino e abandono paterno.<br>• <strong>B:</strong> <em>'lack of recognition men receive'</em> — <strong>Incorreto.</strong> A crítica é feita aos homens, não às mulheres.<br>• <strong>C:</strong> <em>'superiority of women'</em> — <strong>Incorreto.</strong> Não aborda superioridade, mas necessidade de respeito e proteção.<br>• <strong>D:</strong> <em>'legal consequences men face'</em> — <strong>Incorreto.</strong> O texto não trata de sanções jurídicas.<br>• <strong>E:</strong> <em>'contradiction between men's origins and their harmful behavior toward women'</em> (contradição entre as origens dos homens e seu comportamento nocivo em relação às mulheres) — <strong>CORRETO.</strong>"
+          },
+          {
+            id: 3,
+            officialNumber: "QUESTÃO 11",
+            imageUrl: "provaunit20261q11.png",
+            context: "",
+            prompt: "In this campaign image, the lungs are metaphorically represented using contrasting natural elements: one composed of dry, dark, withered plants, and the other of colorful, blooming flowers.\nFrom a symbolic perspective, this visual construction enhances the message about behavioral change in health promotion by",
+            options: [
+              "illustrating seasonal variations in respiratory conditions and their impact on lung function.",
+              "metaphorically opposing decay and vitality to represent the physiological consequences of smoking and the benefits of cessation.",
+              "emphasizing the aesthetic value of plant life to promote alternative treatments like aromatherapy and herbal medicine.",
+              "conveying the inevitability of respiratory decline regardless of lifestyle through the use of organic imagery.",
+              "reinforcing the superiority of natural environments over urban settings in preventing lung diseases."
+            ],
+            correctIndex: 1,
+            explanation: "A alternativa correta é a <strong>B</strong>.<br><br><strong>Justificativa:</strong> A oposição visual entre um pulmão seco/murcho (deterioração causada pelo cigarro) e outro repleto de flores vivas (vitalidade recuperada ao parar de fumar) serve para <strong>opor metaforicamente a decadência à vitalidade</strong>, representando visualmente os malefícios do tabagismo e os benefícios da cessação.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'seasonal variations'</em> (variações sazonais) — <strong>Incorreto.</strong> Não se refere às estações do ano.<br>• <strong>B:</strong> <em>'metaphorically opposing decay and vitality to represent the physiological consequences of smoking and the benefits of cessation'</em> (opor metaforicamente decadência e vitalidade para representar as consequências fisiológicas do tabagismo e os benefícios de parar) — <strong>CORRETO.</strong><br>• <strong>C:</strong> <em>'aromatherapy and herbal medicine'</em> (aromaterapia e fitoterapia) — <strong>Incorreto.</strong><br>• <strong>D:</strong> <em>'inevitability of respiratory decline'</em> (inevitabilidade do declínio) — <strong>Incorreto.</strong> A campanha defende que é possível reverter/melhorar parando de fumar.<br>• <strong>E:</strong> <em>'natural environments over urban settings'</em> (ambientes naturais vs urbanos) — <strong>Incorreto.</strong>"
+          },
+          {
+            id: 4,
+            officialNumber: "QUESTÃO 12",
+            imageUrl: "provaunit20261q12.png",
+            context: "",
+            prompt: "Idiomatic expressions are commonly used in informal English to convey abstract or complex ideas. In this comic strip, the man says: \"It smells familiar, but I can't put my finger on it.\"\nOne can say that the expression \"put my finger on it\" means, in this context, that he",
+            options: [
+              "is trying to physically touch the scent to identify it.",
+              "wants to clean the car because the smell bothers him.",
+              "recognizes the smell but cannot precisely identify it.",
+              "blames the woman for wearing too much perfume.",
+              "is referring to an allergic reaction caused by the scent."
+            ],
+            correctIndex: 2,
+            explanation: "A alternativa correta é a <strong>C</strong>.<br><br><strong>Justificativa:</strong> A expressão idiomática <strong>'can't put my finger on it'</strong> significa em inglês 'não conseguir identificar/lembrar exatamente o que é algo', embora pareça familiar. O homem sente o cheiro do perfume, reconhece que já o sentiu antes, mas <strong>não consegue identificar precisamente qual é o aroma</strong>.<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'physically touch the scent'</em> (tocar fisicamente o cheiro) — <strong>Incorreto.</strong> É uma expressão figurada, não literal.<br>• <strong>B:</strong> <em>'wants to clean the car'</em> (quer limpar o carro) — <strong>Incorreto.</strong><br>• <strong>C:</strong> <em>'recognizes the smell but cannot precisely identify it'</em> (reconhece o cheiro, mas não consegue identificá-lo com precisão) — <strong>CORRETO.</strong><br>• <strong>D:</strong> <em>'blames the woman'</em> (culpa a mulher) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'referring to an allergic reaction'</em> (refere-se a uma reação alérgica) — <strong>Incorreto.</strong>"
+          }
+        ]
+      },
+      '2025.2': {
+        title: 'VESTIBULAR MEDICINA 2025.2',
+        institution: 'UNIT / FITS - Faculdade Tiradentes',
+        date: 'Aplicação: 01/06/2025',
+        questions: [
+          {
+            id: 1,
+            officialNumber: "QUESTÃO 9",
+            imageUrl: "provaunit20252q09.png",
+            context: "",
+            prompt: "This cartoon suggests that humans",
+            options: [
+              "are to blame for the current awful state of our planet.",
+              "are doing their best for planetary health.",
+              "will be able to survive eventual asteroid clashes.",
+              "won't be deadly affected by meteors orbiting the Earth.",
+              "have proved to be able to manage asteroid clashes."
+            ],
+            correctIndex: 0,
+            explanation: "A alternativa correta é a <strong>A</strong>.<br><br><strong>Justificativa:</strong> No cartum, a Terra é diagnosticada como estando 'doente' com uma infecção grave chamada 'humanos' (<em>'nasty case of humans'</em>), e a 'cura' recomendada seriam asteroides para exterminá-los. Isso é uma metáfora crítica mostrando que <strong>os humanos são os culpados pelo péssimo estado atual do planeta</strong>.<br><br><strong>Tradução das opções:</strong><br>• <strong>A:</strong> <em>'are to blame for the current awful state of our planet'</em> (são os culpados pelo péssimo estado atual do nosso planeta) — <strong>CORRETO.</strong><br>• <strong>B:</strong> <em>'are doing their best...'</em> (estão fazendo o melhor pela saúde do planeta) — <strong>Incorreto.</strong> A tirinha indica o oposto.<br>• <strong>C:</strong> <em>'will survive asteroid clashes'</em> (sobreviverão a choques de asteroides) — <strong>Incorreto.</strong> Os asteroides serviriam para eliminá-los.<br>• <strong>D:</strong> <em>'won't be deadly affected...'</em> (não serão afetados fatalmente) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'have proved to manage asteroid clashes'</em> (provaram ser capazes de gerenciar impactos) — <strong>Incorreto.</strong>"
+          },
+          {
+            id: 2,
+            officialNumber: "QUESTÃO 10",
+            context: `A recent review by the World Health Organization highlights the important role that art, culture and music have in promoting health and wellbeing... Listening to calming music can lower cortisol levels, the hormone responsible for stress, and help regulate heart rate and blood pressure. This is why music therapy is often used in hospitals and mental health treatment to help patients manage pain, anxiety, and depression as music can stimulate the release of endorphins and dopamine, which are natural painkillers.`,
+            prompt: "Research has shown that music can influence brain activity in various ways.\nThe mechanism that best explains how music therapy can help reduce symptoms of anxiety and depression is by",
+            options: [
+              "increasing blood pressure and heart rate to enhance focus and alertness.",
+              "directly altering the genetic structure of neurons to increase emotional resilience.",
+              "stimulating the release of neurotransmitters, which regulate mood and emotions.",
+              "synchronizing brain waves with external rhythms, completely eliminating negative emotions.",
+              "suppressing activity in the prefrontal cortex, allowing the brain to function without emotional interference."
+            ],
+            correctIndex: 2,
+            explanation: "A alternativa correta é a <strong>C</strong>.<br><br><strong>Justificativa:</strong> O parágrafo explica que a música auxilia no tratamento de ansiedade e depressão porque estimula a liberação de substâncias químicas no cérebro: <em>'music can stimulate the release of endorphins and dopamine'</em> (a música pode estimular a <strong>liberação de endorfinas e dopamina</strong>, que são neurotransmissores moduladores do humor e da dor).<br><br><strong>Tradução e análise das alternativas:</strong><br>• <strong>A:</strong> <em>'increasing blood pressure...'</em> (aumentando a pressão arterial) — <strong>Incorreto.</strong> O texto diz que ela reduz (lower) a pressão.<br>• <strong>B:</strong> <em>'altering the genetic structure'</em> (alterando a estrutura genética dos neurônios) — <strong>Incorreto.</strong> Sem embasamento no texto.<br>• <strong>C:</strong> <em>'stimulating the release of neurotransmitters, which regulate mood and emotions'</em> (estimulando a liberação de neurotransmissores, que regulam o humor e as emoções) — <strong>CORRETO.</strong><br>• <strong>D:</strong> <em>'completely eliminating negative emotions'</em> (eliminando completamente emoções negativas) — <strong>Incorreto.</strong> Exagero irreal.<br>• <strong>E:</strong> <em>'suppressing activity in the prefrontal cortex'</em> (suprimindo atividade no córtex pré-frontal) — <strong>Incorreto.</strong>"
+          },
+          {
+            id: 3,
+            officialNumber: "QUESTÃO 11",
+            context: `Music also plays a crucial role in cognitive function. Studies have shown that listening to or playing music can enhance memory, concentration, and problem-solving skills. This is particularly beneficial for individuals with neurodegenerative conditions such as Alzheimer's disease, as familiar songs can trigger memories and improve mood.`,
+            prompt: "Studies suggest that music can enhance cognitive function in patients with Alzheimer's disease.\nThe alternative that provides the most scientifically supported explanation for this phenomenon is that",
+            options: [
+              "music stimulates the amygdala, permanently restoring lost memories.",
+              "patients with Alzheimer's disease develop new neural connections solely through passive listening.",
+              "exposure to classical music increases brain mass, reversing the effects of neurodegeneration.",
+              "musical engagement prevents the loss of neurons by increasing the production of gray matter in the brain.",
+              "the rhythmic and melodic structures of music can activate neural pathways associated with memory even in late stages of dementia."
+            ],
+            correctIndex: 4,
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> O texto explicita que a música é benéfica para pacientes de Alzheimer porque <em>'familiar songs can trigger memories and improve mood'</em> (canções familiares podem <strong>ativar memórias e melhorar o humor</strong>). A explicação científica respaldada é que estruturas rítmicas e melódicas ativam vias neurais associadas à memória mesmo em estágios avançados da demência.<br><br><strong>Análise das opções:</strong><br>• <strong>A:</strong> <em>'permanently restoring lost memories'</em> (restaurando permanentemente memórias perdidas) — <strong>Incorreto.</strong> Não há cura ou restauração permanente mencionada.<br>• <strong>B:</strong> <em>'solely through passive listening'</em> (exclusivamente por escuta passiva) — <strong>Incorreto.</strong> O texto menciona 'listening to or playing'.<br>• <strong>C:</strong> <em>'increases brain mass, reversing...'</em> (aumenta a massa cerebral, revertendo a neurodegeneração) — <strong>Incorreto.</strong> Afirmação falsa.<br>• <strong>D:</strong> <em>'prevents loss of neurons by increasing gray matter'</em> — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'the rhythmic and melodic structures of music can activate neural pathways associated with memory even in late stages of dementia'</em> — <strong>CORRETO.</strong>"
+          },
+          {
+            id: 4,
+            officialNumber: "QUESTÃO 12",
+            context: `...music therapy is often used in hospitals and mental health treatment to help patients manage pain, anxiety, and depression as music can stimulate the release of endorphins and dopamine, which are natural painkillers.`,
+            prompt: "In medical settings, music therapy has been used as an alternative method for pain management.\nThe primary way in which music is believed to reduce the perception of pain is that it",
+            options: [
+              "blocks pain receptors in the nervous system by directly interfering with nociceptors.",
+              "accelerates the healing process by altering the body's cellular regeneration rate.",
+              "distracts the patient from pain, allowing them to ignore its presence completely.",
+              "numbs the nervous system, preventing the transmission of pain signals to the brain.",
+              "increases the production of hormones that activate the brain's reward system, creating a natural analgesic effect."
+            ],
+            correctIndex: 4,
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> O texto aponta expressamente que a música reduz a percepção de dor pois <em>'stimulate the release of endorphins and dopamine, which are natural painkillers'</em> (estimula a liberação de endorfinas e dopamina, que funcionam como <strong>analgésicos naturais</strong> do próprio corpo, ativando o sistema de recompensa e bem-estar).<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> <em>'blocks pain receptors...'</em> (bloqueia receptores de dor diretamente) — <strong>Incorreto.</strong><br>• <strong>B:</strong> <em>'accelerates the healing process...'</em> (acelera a regeneração celular) — <strong>Incorreto.</strong><br>• <strong>C:</strong> <em>'ignore its presence completely'</em> (ignorar a dor completamente) — <strong>Incorreto.</strong><br>• <strong>D:</strong> <em>'numbs the nervous system'</em> (anestesia o sistema nervoso) — <strong>Incorreto.</strong><br>• <strong>E:</strong> <em>'increases the production of hormones that activate the brain's reward system, creating a natural analgesic effect'</em> (aumenta a produção de hormônios que ativam o sistema de recompensa do cérebro, criando um efeito analgésico natural) — <strong>CORRETO.</strong>"
+          }
+        ]
+      },
+      '2025.1': {
+        title: 'PROCESSO SELETIVO 2025.1',
+        institution: 'UNIT / FITS - Faculdade Tiradentes',
+        date: 'Aplicação: 1º Semestre de 2025',
+        questions: [
+          {
+            id: 1,
+            officialNumber: "QUESTÃO 9",
+            context: `In my work as a burnout coach, I have found that the cause that stands out above all the others is not feeling valued. If we neither give nor receive appreciation at work, our chances of burning out increase, according to a 2019 study by the Tanner Institute. <u>In the long run</u>, this absence of positive feedback diminishes and devalues us. The good news is that the appreciation cure <u>works both ways</u>. We can be nourished by the act of appreciating others, which also increases our chances of receiving it as well.\n\nWe may think we are living in the age of exhaustion par excellence. A 2023 survey found that around half of the UK and US workforce declares it is always or often exhausted or stressed. But ours is far from being the only generation to have battled with the demons of exhaustion. In the Middle Ages, exhaustion was defined as "acedia" – a <u>sinful</u> spiritual malaise that manifested as apathy, torpor and ingratitude. Renaissance scholars associated exhaustion with scholarly activities and the alignment of the planets. In the 19th century, it was the central symptom of a condition called "neurasthenia", defined as a <u>weakness</u> of the nerves and understood to be the consequence of a faster pace of life and overstimulation. I have found it consoling to learn that these fears have always been with us. Concerns about exhaustion are what make us human. They relate to more deep-seated fears about the consequences of social change, the gradual <u>waning</u> of energy as we age, and death.`,
+            prompt: "According to Anna Schaffner, the main cause of burnout syndromes has to do with",
+            options: [
+              "low self-esteem.",
+              "long working hours.",
+              "excessive work pressure.",
+              "heavy burden of responsibility.",
+              "lack of appreciation at work."
+            ],
+            correctIndex: 4,
+            explanation: "A alternativa correta é a <strong>E</strong>.<br><br><strong>Justificativa:</strong> A autora afirma expressamente no início do texto: <em>'I have found that the cause that stands out above all the others is not feeling valued'</em> (Descobri que a causa que se destaca de todas as outras é não se sentir valorizado). Isso equivale a <strong>'lack of appreciation at work'</strong> (falta de reconhecimento no trabalho).<br><br><strong>Tradução e análise das opções:</strong><br>• <strong>A:</strong> Autoestima baixa — <strong>Incorreto.</strong><br>• <strong>B:</strong> Horas de trabalho prolongadas — <strong>Incorreto.</strong><br>• <strong>C:</strong> Pressão de trabalho excessiva — <strong>Incorreto.</strong><br>• <strong>D:</strong> Carga pesada de responsabilidade — <strong>Incorreto.</strong><br>• <strong>E:</strong> Lack of appreciation at work (Falta de valorização/reconhecimento no trabalho) — <strong>CORRETO.</strong>"
+          },
+          {
+            id: 2,
+            officialNumber: "QUESTÃO 10",
+            context: `In my work as a burnout coach, I have found that the cause that stands out above all the others is not feeling valued. If we neither give nor receive appreciation at work, our chances of burning out increase, according to a 2019 study by the Tanner Institute. <u>In the long run</u>, this absence of positive feedback diminishes and devalues us. The good news is that the appreciation cure <u>works both ways</u>. We can be nourished by the act of appreciating others, which also increases our chances of receiving it as well.\n\nWe may think we are living in the age of exhaustion par excellence. A 2023 survey found that around half of the UK and US workforce declares it is always or often exhausted or stressed. But ours is far from being the only generation to have battled with the demons of exhaustion. In the Middle Ages, exhaustion was defined as "acedia" – a <u>sinful</u> spiritual malaise that manifested as apathy, torpor and ingratitude. Renaissance scholars associated exhaustion with scholarly activities and the alignment of the planets. In the 19th century, it was the central symptom of a condition called "neurasthenia", defined as a <u>weakness</u> of the nerves and understood to be the consequence of a faster pace of life and overstimulation. I have found it consoling to learn that these fears have always been with us. Concerns about exhaustion are what make us human. They relate to more deep-seated fears about the consequences of social change, the gradual <u>waning</u> of energy as we age, and death.`,
+            prompt: "It's stated in the text:\nI) Exhaustion is an exclusive characteristic of modern times.\nII) About fifty percent of American employees admit to being quite stressed.\nIII) In the Middle Ages, exhaustion used to be associated with some kind of laziness.\nIV) Concerns about exhaustion are usually viewed as meaningless.\n\nAccording to the text, the correct statements are only",
+            options: [
+              "I and II.",
+              "I, II and IV.",
+              "I, III and IV.",
+              "II and III.",
+              "III and IV."
+            ],
+            correctIndex: 3,
+            explanation: "A alternativa correta é a <strong>D</strong>.<br><br><strong>Justificativa:</strong><br>• <strong>Item I (Incorreto):</strong> O texto explicita que a nossa geração não é a única a lidar com a exaustão (<em>'ours is far from being the only generation...'</em>).<br>• <strong>Item II (Correto):</strong> O texto menciona que cerca de metade (50%) dos trabalhadores nos EUA e Reino Unido estão exaustos/estressados (<em>'around half of the UK and US workforce...'</em>).<br>• <strong>Item III (Correto):</strong> Na Idade Média, a exaustão era definida como <em>'acedia'</em> (apatia/preguiça espiritual).<br>• <strong>Item IV (Incorreto):</strong> A autora afirma que a exaustão faz parte da condição humana (<em>'what make us human'</em>), não sendo sem sentido."
+          },
+          {
+            id: 3,
+            officialNumber: "QUESTÃO 11",
+            context: `In my work as a burnout coach, I have found that the cause that stands out above all the others is not feeling valued. If we neither give nor receive appreciation at work, our chances of burning out increase, according to a 2019 study by the Tanner Institute. <u>In the long run</u>, this absence of positive feedback diminishes and devalues us. The good news is that the appreciation cure <u>works both ways</u>. We can be nourished by the act of appreciating others, which also increases our chances of receiving it as well.\n\nWe may think we are living in the age of exhaustion par excellence. A 2023 survey found that around half of the UK and US workforce declares it is always or often exhausted or stressed. But ours is far from being the only generation to have battled with the demons of exhaustion. In the Middle Ages, exhaustion was defined as "acedia" – a <u>sinful</u> spiritual malaise that manifested as apathy, torpor and ingratitude. Renaissance scholars associated exhaustion with scholarly activities and the alignment of the planets. In the 19th century, it was the central symptom of a condition called "neurasthenia", defined as a <u>weakness</u> of the nerves and understood to be the consequence of a faster pace of life and overstimulation. I have found it consoling to learn that these fears have always been with us. Concerns about exhaustion are what make us human. They relate to more deep-seated fears about the consequences of social change, the gradual <u>waning</u> of energy as we age, and death.`,
+            prompt: "The word or expression underlined in the text has been correctly defined in alternative",
+            options: [
+              "\"In the long run\" - Eventually.",
+              "\"works both ways\" - unilateral.",
+              "\"sinful\" - virtuous.",
+              "\"weakness\" - strength.",
+              "\"waning\" - increase."
+            ],
+            correctIndex: 0,
+            explanation: "A alternativa correta é a <strong>A</strong>.<br><br><strong>Justificativa:</strong> A expressão <strong>'In the long run'</strong> significa 'a longo prazo' ou 'com o passar do tempo/eventualmente' (<em>Eventually</em>). As demais opções apresentam antônimos ou sinonímias incorretas."
+          },
+          {
+            id: 4,
+            officialNumber: "QUESTÃO 12",
+            context: `The signs of global warming are everywhere, and are <strong>more complex than</strong> just climbing temperatures. Our planet is getting <strong>hotter</strong>. Since the Industrial Revolution—an event that spurred the use of fossil fuels in everything from power plants to transportation—Earth has warmed by 1 degree Celsius, about 2 degrees Fahrenheit. That <strong>may</strong> sound insignificant, but 2023 was the hottest year on record, and all 10 of the hottest years on record <strong>have occurred</strong> in the past decade.\n\nGlobal warming and climate change are often used interchangeably as synonyms, but scientists prefer to use "climate change" when describing the complex shifts now affecting our planet's weather and climate systems. Climate change encompasses <strong>not only</strong> rising average temperatures <strong>but also</strong> natural disasters, shifting wildlife habitats, rising seas, and a range of other impacts. All of these changes are emerging <strong>as</strong> humans continue to add heat-trapping greenhouse gases, like carbon dioxide and methane, to the atmosphere.`,
+            prompt: "Analyze the words or expressions in bold.\nAs far as language use is considered, it's correct to say:",
+            options: [
+              "\"more complex than\" and \"hotter\" - are in different degrees of comparison.",
+              "The modal \"may\" is the same as should.",
+              "The verb form \"have occurred\" describes an event dissociated from the present time.",
+              "The correlative conjunction \"not only [...] but also\" presents two related pieces of information.",
+              "The word \"as\" in \"as humans continue to add\" is introducing a comparative clause."
+            ],
+            correctIndex: 3,
+            explanation: "A alternativa correta é a <strong>D</strong>.<br><br><strong>Justificativa:</strong> A estrutura correlativa <strong>'not only [...] but also'</strong> serve para apresentar duas informações relacionadas que se somam na frase.<br><br><strong>Análise das opções incorretas:</strong><br>• <strong>A:</strong> Ambas as expressões estão no mesmo grau de comparação (comparativo de superioridade).<br>• <strong>B:</strong> O verbo modal <em>may</em> indica possibilidade, enquanto <em>should</em> indica conselho/dever.<br>• <strong>C:</strong> O tempo verbal <em>have occurred</em> (Present Perfect) conecta o evento passado ao tempo presente.<br>• <strong>E:</strong> A palavra <em>as</em> no trecho atua com valor causal/temporal ('à medida que / enquanto'), não comparativo."
+          }
+        ]
+      }
+    };
+
+    // Estado Global da Aplicação
+    let currentExamKey = null;
+    let currentQuestionIndex = 0;
+    let userAnswers = {};
+    let checkedQuestions = {};
+
+    // Inicia assim que o HTML estiver pronto
+    document.addEventListener('DOMContentLoaded', () => {
+      showExamSelectionMenu();
+    });
+
+    // Menu Principal de Seleção de Prova
+    function showExamSelectionMenu() {
+      currentExamKey = null;
+      userAnswers = {};
+      checkedQuestions = {};
+
+      document.getElementById('top-nav-bar').classList.add('hidden');
+
+      const appContent = document.getElementById('app-content');
+      appContent.innerHTML = `
+        <div class="text-center py-2 space-y-4">
+          <div class="inline-block bg-sky-900/60 text-sky-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-sky-500/50">
+            Simulador de Inglês Medicina
+          </div>
+          <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            Selecione a Prova UNIT para Praticar
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
+            Resolva as questões oficiais de Língua Estrangeira (Inglês) extraídas dos exames anteriores da Universidade Tiradentes. Receba feedback com justificativas explicativas em português.
+          </p>
+
+          <div class="grid grid-cols-1 gap-3 pt-2 max-w-md mx-auto">
+
+            <!-- Card Prova 2026.2 -->
+            <button onclick="startExam('2026.2')" class="bg-slate-800/70 border-2 border-sky-500/70 hover:border-sky-400 hover:bg-slate-800 p-3 rounded-2xl text-left shadow-lg transition-all group flex flex-col justify-between">
+              <div>
+                <span class="bg-sky-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Edição Mais Recente</span>
+                <h2 class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 mt-1.5">
+                  Processo Seletivo Medicina 2026.2
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Aplicação: 31/05/2026 • 4 Questões Objetivas</p>
+              </div>
+              <div class="mt-2 flex items-center text-xs font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                Iniciar Prova 2026.2 →
+              </div>
+            </button>
+
+            <!-- Card Prova 2026.1 -->
+            <button onclick="startExam('2026.1')" class="bg-slate-800/70 border-2 border-slate-600 hover:border-sky-400 hover:bg-slate-800 p-3 rounded-2xl text-left shadow-lg transition-all group flex flex-col justify-between">
+              <div>
+                <span class="bg-slate-700 text-slate-200 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Edição Intermediária</span>
+                <h2 class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 mt-1.5">
+                  Processo Seletivo Medicina 2026.1
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Aplicação: 26/10/2025 • 4 Questões Objetivas</p>
+              </div>
+              <div class="mt-2 flex items-center text-xs font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                Iniciar Prova 2026.1 →
+              </div>
+            </button>
+
+            <!-- Card Prova 2025.2 -->
+            <button onclick="startExam('2025.2')" class="bg-slate-800/70 border-2 border-slate-600 hover:border-sky-400 hover:bg-slate-800 p-3 rounded-2xl text-left shadow-lg transition-all group flex flex-col justify-between">
+              <div>
+                <span class="bg-slate-700 text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Edição Anterior</span>
+                <h2 class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 mt-1.5">
+                  Vestibular Medicina 2025.2
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Aplicação: 01/06/2025 • 4 Questões Objetivas</p>
+              </div>
+              <div class="mt-2 flex items-center text-xs font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                Iniciar Prova 2025.2 →
+              </div>
+            </button>
+
+            <!-- Card Prova 2025.1 -->
+            <button onclick="startExam('2025.1')" class="bg-slate-800/70 border-2 border-slate-600 hover:border-sky-400 hover:bg-slate-800 p-3 rounded-2xl text-left shadow-lg transition-all group flex flex-col justify-between">
+              <div>
+                <span class="bg-slate-700 text-slate-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Edição Anterior</span>
+                <h2 class="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 mt-1.5">
+                  Processo Seletivo Medicina 2025.1
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Aplicação: 1º Semestre 2025 • 4 Questões Objetivas</p>
+              </div>
+              <div class="mt-2 flex items-center text-xs font-bold text-sky-400 group-hover:translate-x-1 transition-transform">
+                Iniciar Prova 2025.1 →
+              </div>
+            </button>
+
+          </div>
+        </div>
+      `;
+    }
+
+    // Inicia a Prova Selecionada
+    function startExam(examKey) {
+      currentExamKey = examKey;
+      currentQuestionIndex = 0;
+      userAnswers = {};
+      checkedQuestions = {};
+
+      document.getElementById('top-nav-bar').classList.remove('hidden');
+      renderQuestionMenu();
+      renderCurrentQuestion();
+    }
+
+    function goToMenu() {
+      showExamSelectionMenu();
+    }
+
+    // Menu de Números das Questões na Barra Superior
+    function renderQuestionMenu() {
+      const exam = examsData[currentExamKey];
+      const navMenu = document.getElementById('question-nav-menu');
+      navMenu.innerHTML = '';
+
+      exam.questions.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = idx + 1;
+
+        let btnClasses = "w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-xs font-bold transition flex items-center justify-center border ";
+
+        if (idx === currentQuestionIndex) {
+          btnClasses += "bg-sky-600 text-white border-white ring-2 ring-sky-400 ";
+        } else if (checkedQuestions[idx]) {
+          const isCorrect = userAnswers[idx] === q.correctIndex;
+          if (isCorrect) {
+            btnClasses += "bg-emerald-900/80 text-emerald-300 border-emerald-500 ";
+          } else {
+            btnClasses += "bg-red-900/80 text-red-300 border-red-500 ";
+          }
+        } else if (userAnswers[idx] !== undefined) {
+          btnClasses += "bg-sky-900/80 text-sky-200 border-sky-400 ";
+        } else {
+          btnClasses += "bg-slate-800 text-slate-300 border-slate-600 hover:bg-slate-700 ";
+        }
+
+        btn.className = btnClasses;
+        btn.onclick = () => {
+          currentQuestionIndex = idx;
+          renderQuestionMenu();
+          renderCurrentQuestion();
+        };
+        navMenu.appendChild(btn);
+      });
+    }
+
+    // Renderiza a Questão Atual
+    function renderCurrentQuestion() {
+      const exam = examsData[currentExamKey];
+      const q = exam.questions[currentQuestionIndex];
+      const isChecked = checkedQuestions[currentQuestionIndex] || false;
+      const selectedOption = userAnswers[currentQuestionIndex];
+
+      const appContent = document.getElementById('app-content');
+
+      let html = `
+        <div class="space-y-3">
+          <!-- Cabeçalho da Questão -->
+          <div class="flex items-center justify-between border-b border-slate-700 pb-2">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase text-sky-400 tracking-wider">${exam.title}</span>
+              <h2 class="text-sm sm:text-base font-bold text-white">${q.officialNumber} (Questão ${currentQuestionIndex + 1} de ${exam.questions.length})</h2>
+            </div>
+            <span class="text-[11px] font-semibold bg-slate-800 text-sky-300 border border-slate-600 px-2.5 py-0.5 rounded-full">Inglês</span>
+          </div>
+
+          <!-- Imagem da Questão (se existir) -->
+          ${q.imageUrl ? `
+            <div class="my-2 flex justify-center bg-slate-900/80 border border-slate-700 rounded-xl p-2 shadow-inner">
+              <img src="${q.imageUrl}" alt="Elemento Visual da ${q.officialNumber}" class="max-h-60 sm:max-h-64 w-auto object-contain rounded-lg border border-slate-600 shadow-sm" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-xs text-slate-400 p-2 text-center italic\'>Imagem não encontrada (${q.imageUrl}). Certifique-se de enviar o arquivo .png correspondente para a raiz do seu repositório no GitHub.</div>';">
+            </div>
+          ` : ''}
+
+          <!-- Texto de Contexto / Suporte -->
+          ${q.context ? `
+            <div class="bg-slate-900/75 border-l-4 border-sky-500 p-3 rounded-r-xl text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line shadow-inner">
+              ${q.context}
+            </div>
+          ` : ''}
+
+          <!-- Enunciado / Prompt -->
+          <p class="text-xs sm:text-sm font-bold text-white whitespace-pre-line pt-1">
+            ${q.prompt}
+          </p>
+
+          <!-- Lista de Opções de Resposta -->
+          <div class="space-y-2.5 pt-1">
+      `;
+
+      const optionLabels = ['A', 'B', 'C', 'D', 'E'];
+
+      q.options.forEach((optText, optIdx) => {
+        let labelColor = "bg-slate-700 text-slate-200";
+        let cardStyle = "border-slate-700 hover:border-sky-400 bg-slate-800/70 hover:bg-slate-700/80";
+
+        if (selectedOption === optIdx) {
+          labelColor = "bg-sky-500 text-white";
+          cardStyle = "border-sky-400 bg-sky-700/60 ring-1 ring-sky-400";
+        }
+
+        if (isChecked) {
+          if (optIdx === q.correctIndex) {
+            labelColor = "bg-emerald-500 text-white";
+            cardStyle = "border-emerald-500 bg-emerald-900/80 ring-1 ring-emerald-400 font-medium";
+          } else if (selectedOption === optIdx && optIdx !== q.correctIndex) {
+            labelColor = "bg-red-500 text-white";
+            cardStyle = "border-red-500 bg-red-900/80";
+          } else {
+            cardStyle = "border-slate-700 opacity-50 bg-slate-800/50";
+          }
+        }
+
+        html += `
+          <button
+            onclick="selectOption(${optIdx})"
+            ${isChecked ? 'disabled' : ''}
+            class="w-full text-left p-3 rounded-xl border-2 transition flex items-start gap-3 shadow-sm ${cardStyle}">
+            <span class="w-6 h-6 rounded-md font-bold text-xs flex items-center justify-center shrink-0 ${labelColor}">
+              ${optionLabels[optIdx]}
+            </span>
+            <span class="text-xs sm:text-sm text-slate-100 pt-0.5 leading-snug">
+              ${optText}
+            </span>
+          </button>
+        `;
+      });
+
+      html += `</div>`;
+
+      // Exibição do Feedback / Justificativa em Português
+      if (isChecked) {
+        const isCorrect = selectedOption === q.correctIndex;
+        html += `
+          <div class="mt-3 p-3.5 sm:p-4 rounded-xl border-2 ${isCorrect ? 'bg-emerald-950/90 border-emerald-500 text-emerald-100' : 'bg-red-950/90 border-red-500 text-red-100'} shadow-md">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="text-base">${isCorrect ? '✅' : '❌'}</span>
+              <h3 class="font-bold text-xs sm:text-sm uppercase">
+                ${isCorrect ? 'Resposta Correta!' : 'Resposta Incorreta!'}
+              </h3>
+            </div>
+            <div class="text-xs sm:text-sm leading-relaxed border-t border-white/15 pt-2">
+              ${q.explanation}
+            </div>
+          </div>
+        `;
+      }
+
+      // Botões de Ação: Previous, Check, Next
+      html += `
+        <div class="flex items-center justify-between gap-2 pt-3 border-t border-slate-700 mt-4">
+          <button
+            onclick="prevQuestion()"
+            ${currentQuestionIndex === 0 ? 'disabled' : ''}
+            class="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-white border border-slate-500 font-bold py-2 px-4 rounded-full text-xs transition shadow">
+            ◄ Anterior
+          </button>
+
+          <button
+            onclick="checkAnswer()"
+            ${selectedOption === undefined || isChecked ? 'disabled' : ''}
+            class="bg-gradient-to-r from-sky-500 to-sky-700 hover:from-sky-600 hover:to-sky-800 disabled:opacity-40 text-white border-2 border-white font-bold py-2 px-6 rounded-full text-xs transition shadow-lg uppercase">
+            Verificar
+          </button>
+
+          ${currentQuestionIndex < exam.questions.length - 1 ? `
+            <button
+              onclick="nextQuestion()"
+              class="bg-slate-700 hover:bg-slate-600 text-white border border-slate-500 font-bold py-2 px-4 rounded-full text-xs transition shadow">
+              Próxima ►
+            </button>
+          ` : `
+            <button
+              onclick="showResultsSummary()"
+              class="bg-emerald-600 hover:bg-emerald-700 text-white border-2 border-white font-bold py-2 px-4 rounded-full text-xs transition shadow uppercase">
+              Finalizar
+            </button>
+          `}
+        </div>
+      `;
+
+      appContent.innerHTML = html;
+    }
+
+    function selectOption(optIdx) {
+      if (checkedQuestions[currentQuestionIndex]) return;
+      userAnswers[currentQuestionIndex] = optIdx;
+      renderQuestionMenu();
+      renderCurrentQuestion();
+    }
+
+    function checkAnswer() {
+      if (userAnswers[currentQuestionIndex] === undefined) return;
+      checkedQuestions[currentQuestionIndex] = true;
+      renderQuestionMenu();
+      renderCurrentQuestion();
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestionMenu();
+        renderCurrentQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      const exam = examsData[currentExamKey];
+      if (currentQuestionIndex < exam.questions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestionMenu();
+        renderCurrentQuestion();
+      }
+    }
+
+    // Relatório Final de Desempenho
+    function showResultsSummary() {
+      const exam = examsData[currentExamKey];
+      let correctCount = 0;
+
+      exam.questions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correctIndex) {
+          correctCount++;
+        }
+      });
+
+      const totalQuestions = exam.questions.length;
+      const incorrectCount = totalQuestions - correctCount;
+      const percentageAccurate = ((correctCount / totalQuestions) * 100).toFixed(1);
+      const scoreOutofTen = ((correctCount / totalQuestions) * 10).toFixed(1);
+
+      const appContent = document.getElementById('app-content');
+
+      let summaryHtml = `
+        <div class="space-y-4 text-center py-1">
+          <div class="bg-slate-800/80 border border-sky-500/50 rounded-2xl p-3 shadow-sm">
+            <span class="text-[10px] font-extrabold uppercase text-sky-400 tracking-wider">${exam.institution}</span>
+            <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">${exam.title}</h2>
+            <p class="text-xs text-slate-400">${exam.date}</p>
+          </div>
+
+          <!-- Card da Nota Final -->
+          <div class="bg-slate-900/90 text-white rounded-2xl p-4 shadow-xl border-2 border-sky-500 flex flex-col items-center justify-center">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Sua Nota Final</span>
+            <div class="text-3xl sm:text-4xl font-black text-sky-400 my-1">${scoreOutofTen} <span class="text-base text-slate-400 font-normal">/ 10.0</span></div>
+            <p class="text-xs text-slate-300 font-medium">Aproveitamento Global: <strong class="text-white">${percentageAccurate}%</strong></p>
+          </div>
+
+          <!-- Métricas Quantitativas -->
+          <div class="grid grid-cols-2 gap-3 max-w-md mx-auto">
+            <div class="bg-emerald-950/70 border-2 border-emerald-500 p-3 rounded-xl">
+              <span class="text-xl font-black text-emerald-400">${correctCount}</span>
+              <p class="text-[11px] font-bold text-emerald-200 uppercase mt-0.5">Acertos (${((correctCount/totalQuestions)*100).toFixed(0)}%)</p>
+            </div>
+            <div class="bg-red-950/70 border-2 border-red-500 p-3 rounded-xl">
+              <span class="text-xl font-black text-red-400">${incorrectCount}</span>
+              <p class="text-[11px] font-bold text-red-200 uppercase mt-0.5">Erros (${((incorrectCount/totalQuestions)*100).toFixed(0)}%)</p>
+            </div>
+          </div>
+
+          <!-- Detalhamento por Questão -->
+          <div class="text-left border-t border-slate-700 pt-3 space-y-2">
+            <h3 class="font-bold text-xs sm:text-sm text-white uppercase border-b border-slate-700 pb-1">Revisão Detalhada das Questões</h3>
+      `;
+
+      exam.questions.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isCorrect = userChoice === q.correctIndex;
+        const optionLabels = ['A', 'B', 'C', 'D', 'E'];
+
+        summaryHtml += `
+          <div class="p-2.5 rounded-xl border text-xs ${isCorrect ? 'bg-emerald-950/50 border-emerald-500/60' : 'bg-red-950/50 border-red-500/60'}">
+            <div class="flex items-center justify-between font-bold mb-0.5 text-white">
+              <span>${q.officialNumber} (Questão ${idx + 1})</span>
+              <span class="${isCorrect ? 'text-emerald-400' : 'text-red-400'}">
+                ${isCorrect ? '✅ Correta' : '❌ Incorreta'}
+              </span>
+            </div>
+            <p class="text-slate-300 text-[11px]">
+              Sua resposta: <strong>${userChoice !== undefined ? optionLabels[userChoice] : 'Não respondida'}</strong> | Gabarito Oficial: <strong class="text-emerald-400">${optionLabels[q.correctIndex]}</strong>
+            </p>
+          </div>
+        `;
+      });
+
+      summaryHtml += `
+          </div>
+
+          <!-- Botões Finais de Navegação -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 pt-3 border-t border-slate-700">
+            <button onclick="startExam('${currentExamKey}')" class="w-full sm:w-auto bg-gradient-to-r from-sky-500 to-sky-700 hover:from-sky-600 hover:to-sky-800 text-white border-2 border-white font-bold py-2 px-5 rounded-full text-xs transition shadow">
+              🔄 Refazer Esta Prova
+            </button>
+            <button onclick="goToMenu()" class="w-full sm:w-auto bg-slate-700 hover:bg-slate-600 text-white border border-slate-500 font-bold py-2 px-5 rounded-full text-xs transition shadow">
+              🏠 Voltar ao Menu Principal
+            </button>
+          </div>
+        </div>
+      `;
+
+      appContent.innerHTML = summaryHtml;
+    }
+  </script>
+</body>
+</html>
